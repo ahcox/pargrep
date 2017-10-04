@@ -15,7 +15,18 @@ int main()
 
     ifstream in(filename);
 
-    grep_stream(in, pattern, std::cout, true);
+    //grep_stream(in, pattern, std::cout, true);
+    in.close();
+    cout.flush();
+
+
+    in.open(filename);
+    //pargrep_stream_par1(in, pattern, std::cout, true);
+    in.close();
+    cout.flush();
+
+    in.open(filename);
+    pargrep_stream_par2(in, pattern, std::cout, true);
     in.close();
     cout.flush();
 

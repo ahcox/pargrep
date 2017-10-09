@@ -7,40 +7,46 @@
  * See bottom of file.
  */
 #include "pargrep.h"
-#include <regex>
+#include "regex_functions.h"
 #include <thread>
 #include <cassert>
 #include <random>
+#include <cstdint>
 
-namespace Pargrep
+namespace pargrep
 {
-    using namespace std;
-
-    constexpr bool DEBUG_CODE_ON            = false;
+    using std::regex;
+    using std::string;
+    using std::endl;
+    using std::istream;
+    using std::ostream;
 
     using LineNumber = std::uint64_t;
 
     // See pargrep.h
     void grep_stream(istream &input, const string pattern, ostream &output, bool lineNumbers)
     {
-      const regex toFind {pattern};
+        const regex toFind {pattern};
+        //cerr << pattern << endl;
 
-      string line;
-      int lineNumber = 1;
-      while(std::getline(input, line))
-      {
-        const bool found = regex_search(line, toFind);
-        if(found)
+        string line;
+        int lineNumber = 1;
+        while(std::getline(input, line))
         {
-          if(lineNumbers)
-          {
-            output << lineNumber << ':'<< line << std::endl;
-          } else {
-            output << line << std::endl;
-          }
+            //std::cerr << "LINE: \"" << line << "\"" << std::endl;
+            const bool found = pargrep::search(line, toFind);
+            if(found)
+            {
+                if(lineNumbers)
+                {
+                    output << lineNumber << ':'<< line << std::endl;
+                } else {
+                    output << line << std::endl;
+                }
+                // std::cerr << "MATCH: " << line << std::endl;
+            }
+            ++lineNumber;
         }
-        ++lineNumber;
-      }
     }
 }
 

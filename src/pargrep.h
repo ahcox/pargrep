@@ -5,10 +5,9 @@
 
 #ifndef PARGREP_PARGREP_H
 #define PARGREP_PARGREP_H
-#include <cstdint>
 #include <iostream>
 
-namespace Pargrep {
+namespace pargrep {
 
     /**
      * Grep for an expression on a single stream and output results on an outstream

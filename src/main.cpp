@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-    using namespace Pargrep;
+    using namespace pargrep;
 
     std::string filename = "/tmp/pargrep.in";
     std::string pattern = "[qz]";

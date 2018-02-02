@@ -589,4 +589,7 @@ namespace pargrep
 ///@ToDo - Add simple string matching without regex and compare to fgrep.
 ///@ToDo - Aligned allocation of threads and thread state structs to avoid false sharing.     constexpr bool USE_ALIGNED_ALLOC        = true;
 ///@ToDo - Aligned allocation of Line structures.
+///@ToDo - Integrate the buffer returned by [Blocking]LineSet::popAll() into the class to clean up the caller.
+/// # Optimisation Ideas
+///@ToDo - Check patterns for a prefix of non-special characters (e.g. [a-z,A-Z,0-9]) and do a begins_with(prefix) match on lines if the pattern has one. This might be done on the reader/main thread before launching lines to worker threads.
 
